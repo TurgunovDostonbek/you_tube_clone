@@ -15,51 +15,78 @@ import qalampir from "../../assets/img/qalampir.jpg";
 import najottalim from "../../assets/img/najot talim.ico";
 import navo from "../../assets/img/navo.png";
 
-export const Sidebar = ({ sidebar }) => {
+export const Sidebar = ({ sidebar, category, setCategory }) => {
   return (
     <div className={`sidebar ${sidebar ? "" : "small_sidebar"}`}>
       <div className="sidebar_links">
-        <div className="side_link">
+        <div
+          className={`side_link ${category == 0 ? "active" : ""}`}
+          onClick={() => setCategory(0)}
+        >
           <IoHomeOutline className="icon" />
           <p>Home</p>
         </div>
 
-        <div className="side_link">
+        <div
+          className={`side_link ${category === 20 ? "active" : ""}`}
+          onClick={() => setCategory(20)}
+        >
           <TfiGame className="icon" />
           <p>Gaming</p>
         </div>
 
-        <div className="side_link">
+        <div
+          className={`side_link ${category === 2 ? "active" : ""}`}
+          onClick={() => setCategory(2)}
+        >
           <FcAutomotive className="icon" />
           <p>Automobile</p>
         </div>
 
-        <div className="side_link">
+        <div
+          className={`side_link ${category === 17 ? "active" : ""}`}
+          onClick={() => setCategory(17)}
+        >
           <MdOutlineSportsBasketball className="icon" />
           <p>Sports</p>
         </div>
 
-        <div className="side_link">
+        <div
+          className={`side_link ${category === 24 ? "active" : ""}`}
+          onClick={() => setCategory(24)}
+        >
           <SiDcentertainment className="icon" />
           <p>Entertainment</p>
         </div>
 
-        <div className="side_link">
+        <div
+          className={`side_link ${category === 28 ? "active" : ""}`}
+          onClick={() => setCategory(28)}
+        >
           <GrTechnology className="icon" />
           <p>Technology</p>
         </div>
 
-        <div className="side_link">
+        <div
+          className={`side_link ${category === 10 ? "active" : ""}`}
+          onClick={() => setCategory(10)}
+        >
           <IoIosMusicalNotes className="icon" />
           <p>Music</p>
         </div>
 
-        <div className="side_link">
+        <div
+          className={`side_link ${category === 22 ? "active" : ""}`}
+          onClick={() => setCategory(22)}
+        >
           <LiaBlogSolid className="icon" />
           <p>Blogs</p>
         </div>
 
-        <div className="side_link">
+        <div
+          className={`side_link ${category === 25 ? "active" : ""}`}
+          onClick={() => setCategory(25)}
+        >
           <IoNewspaper className="icon" />
           <p>News</p>
         </div>
