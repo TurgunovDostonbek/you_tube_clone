@@ -5,12 +5,34 @@ import { BiLike } from "react-icons/bi";
 import { BiDislike } from "react-icons/bi";
 import { FaShare } from "react-icons/fa";
 import { MdSaveAlt } from "react-icons/md";
+import { useEffect, useState } from "react";
+import { API_KEY } from "../../data";
 
-const PlayVideo = () => {
+const PlayVideo = ({ videoId }) => {
+  const [apiData, setApiData] = useState(null);
+  // console.log(apiData);
+
+  const fetchVideoData = async () => {
+    const videoDetalist_url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${API_KEY}`;
+    await fetch(videoDetalist_url).then((res) =>
+      res.json().then((data) => setApiData(data))
+    );
+  };
+
+  useEffect(() => {
+    fetchVideoData();
+  }, [apiData]);
+
   return (
     <div className="play_video">
-      <video src={tabiatVideo} controls autoPlay muted></video>
-      <h3>Lorem ipsum dolor sit amet consectetur.</h3>
+      <iframe
+        src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      ></iframe>
+      <h3>Title Here </h3>
       <div className="play_video_info">
         <p>1525 Views &bull; 2day ago</p>
         <div>
@@ -29,6 +51,7 @@ const PlayVideo = () => {
         </div>
       </div>
       <hr />
+
       <div className="publisher">
         <img src={user} alt="" />
         <div>
@@ -103,5 +126,4 @@ const PlayVideo = () => {
     </div>
   );
 };
-
 export default PlayVideo;
