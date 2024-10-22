@@ -5,6 +5,7 @@ import { CiSearch } from "react-icons/ci";
 import { IoIosNotifications } from "react-icons/io";
 import { FaVideo } from "react-icons/fa6";
 import Profile_User from "../../assets/img/user.png";
+import { Link } from "react-router-dom";
 
 export const Navbar = ({ setSidebar }) => {
   return (
@@ -14,9 +15,9 @@ export const Navbar = ({ setSidebar }) => {
           onClick={() => setSidebar((prev) => (prev === false ? true : false))}
           className="menu_icon"
         />
-        <h2 className="nav_left_logo flex-div">
+        <Link to="/" className="nav_left_logo flex-div">
           <FaYoutube className="logo" /> YouTube
-        </h2>
+        </Link>
       </div>
 
       <div className="nav_middle flex-div">
