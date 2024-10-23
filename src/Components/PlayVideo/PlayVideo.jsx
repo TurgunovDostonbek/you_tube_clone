@@ -1,5 +1,4 @@
 import "./PlayVideo.css";
-import tabiatVideo from "../../assets/video/vodddeee.mp4";
 import user from "../../assets/img/user.png";
 import { BiLike } from "react-icons/bi";
 import { BiDislike } from "react-icons/bi";
@@ -10,8 +9,9 @@ import { API_KEY } from "../../data";
 
 const PlayVideo = ({ videoId }) => {
   const [apiData, setApiData] = useState(null);
-  // console.log(apiData);
+  const [commentData, setCommentData] = useState(null);
 
+  // Fetching Video Data
   const fetchVideoData = async () => {
     const videoDetalist_url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${API_KEY}`;
     await fetch(videoDetalist_url).then((res) =>
@@ -19,6 +19,20 @@ const PlayVideo = ({ videoId }) => {
     );
   };
 
+  // Fetching Comment Data
+  const fetchCommentData = async () => {
+    const videoComment_url = `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&videoId=${videoId}&key=${API_KEY}`;
+
+    await fetch(videoComment_url)
+      .then((res) => res.json())
+      .then((data) => setCommentData(data.items));
+  };
+
+  useEffect(() => {
+    fetchCommentData();
+  }, [apiData]);
+
+  // Fetching Video Data => useEffect..?
   useEffect(() => {
     fetchVideoData();
   }, [apiData]);
@@ -32,15 +46,17 @@ const PlayVideo = ({ videoId }) => {
         referrerpolicy="strict-origin-when-cross-origin"
         allowfullscreen
       ></iframe>
-      <h3>Title Here </h3>
+      <h3>{"Title Hero"}</h3>
       <div className="play_video_info">
-        <p>1525 Views &bull; 2day ago</p>
+        <p>
+          {"16K"} Views &bull; {"2 day ago"}
+        </p>
         <div>
           <span>
-            <BiLike className="icon" /> 125
+            <BiLike className="icon" /> {2585}
           </span>
           <span>
-            <BiDislike className="icon" /> 2
+            <BiDislike className="icon" /> {2}
           </span>
           <span>
             <FaShare className="icon" /> Share
@@ -55,73 +71,44 @@ const PlayVideo = ({ videoId }) => {
       <div className="publisher">
         <img src={user} alt="" />
         <div>
-          <p>Turgunov Dostonbek</p>
-          <span>1M Subscribers</span>
+          <p>{"Turgunov Dostonbek"}</p>
+          <span>{"1M"} Subscribers</span>
         </div>
         <button>Subscribers</button>
       </div>
+
       <div className="vid_description">
-        <p>Chanel that makes learning Easy</p>
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis,
-          maxime.
-        </p>
+        <p>{"Channell Description"}</p>
         <hr />
-        <h4>130 Comments</h4>
-        <div className="comment">
-          <img src={user} alt="" />
-          <div>
-            <h3>
-              Abduraxmonov R <span>1 day ago</span>
-            </h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-              ullam consectetur vel amet fugiat aliquid placeat soluta nesciunt
-              voluptate aliquam?
-            </p>
-            <div className="comment_action">
-              <BiLike className="icon" />
-              <span>244</span>
-              <BiDislike className="icon" />
-            </div>
-          </div>
-        </div>
-        <div className="comment">
-          <img src={user} alt="" />
-          <div>
-            <h3>
-              Abduraxmonov R <span>1 day ago</span>
-            </h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-              ullam consectetur vel amet fugiat aliquid placeat soluta nesciunt
-              voluptate aliquam?
-            </p>
-            <div className="comment_action">
-              <BiLike className="icon" />
-              <span>244</span>
-              <BiDislike className="icon" />
-            </div>
-          </div>
-        </div>
-        <div className="comment">
-          <img src={user} alt="" />
-          <div>
-            <h3>
-              Abduraxmonov R <span>1 day ago</span>
-            </h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-              ullam consectetur vel amet fugiat aliquid placeat soluta nesciunt
-              voluptate aliquam?
-            </p>
-            <div className="comment_action">
-              <BiLike className="icon" />
-              <span>244</span>
-              <BiDislike className="icon" />
-            </div>
-          </div>
-        </div>
+        <h4>{130} Comments</h4>
+
+        {commentData &&
+          commentData.map((item, index) => {
+            return (
+              <div key={index} className="comment">
+                <img
+                  src={
+                    item.snippet.topLevelComment.snippet.authorProfileImageUrl
+                  }
+                  alt=""
+                />
+                <div>
+                  <h3>
+                    {item.snippet.topLevelComment.snippet.authorDisplayName}{" "}
+                    <span>1 day ago</span>
+                  </h3>
+                  <p>{item.snippet.topLevelComment.snippet.textDisplay}</p>
+                  <div className="comment_action">
+                    <BiLike className="icon" />
+                    <span>
+                      {item.snippet.topLevelComment.snippet.likeCount}
+                    </span>
+                    <BiDislike className="icon" />
+                  </div>
+                </div>
+              </div>
+            );
+          })}
       </div>
     </div>
   );

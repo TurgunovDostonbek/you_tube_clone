@@ -18,7 +18,6 @@ const Feed = ({ category }) => {
   useEffect(() => {
     fetchData();
   }, [category]);
-  console.log(data);
 
   return (
     <div className="feed">
