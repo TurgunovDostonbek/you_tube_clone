@@ -6,8 +6,11 @@ import { FaShare } from "react-icons/fa";
 import { MdSaveAlt } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { API_KEY } from "../../data";
+import { useParams } from "react-router-dom";
 
-const PlayVideo = ({ videoId }) => {
+const PlayVideo = () => {
+  const { videoId } = useParams();
+
   const [apiData, setApiData] = useState(null);
   const [commentData, setCommentData] = useState(null);
 
@@ -15,26 +18,28 @@ const PlayVideo = ({ videoId }) => {
   const fetchVideoData = async () => {
     const videoDetalist_url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${API_KEY}`;
     await fetch(videoDetalist_url).then((res) =>
-      res.json().then((data) => setApiData(data))
+      res.json().then((data) => setApiData(data.items[0]))
     );
   };
 
   // Fetching Comment Data
   const fetchCommentData = async () => {
-    const videoComment_url = `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&videoId=${videoId}&key=${API_KEY}`;
+    const videoComment_url = `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=50&videoId=${videoId}&key=${API_KEY}`;
 
     await fetch(videoComment_url)
       .then((res) => res.json())
       .then((data) => setCommentData(data.items));
   };
 
-  useEffect(() => {
-    fetchCommentData();
-  }, [apiData]);
-
   // Fetching Video Data => useEffect..?
   useEffect(() => {
     fetchVideoData();
+  }, [videoId]);
+
+  useEffect(() => {
+    if (apiData) {
+      fetchCommentData();
+    }
   }, [apiData]);
 
   return (

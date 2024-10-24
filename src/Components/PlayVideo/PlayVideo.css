@@ -139,3 +139,25 @@
   margin-right: 20px;
   color: #5a5a5a;
 }
+
+@media (max-width:900px) {
+  .play_video {
+    flex-basis: 100%;
+  }
+
+  .play_video iframe {
+    width: 100%;
+    height: 50vw;
+  }
+
+  .vid_description {
+    padding-left: 0px;
+  }
+
+  .play_video .play_video_info span {
+    margin-left: 0px;
+    padding-right: 15px;
+    margin-top: 15px;
+
+  }
+}

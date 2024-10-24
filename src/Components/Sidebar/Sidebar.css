@@ -6,7 +6,10 @@
   top: 0;
   padding-left: 2%;
   padding-top: 90px;
+}
 
+.sidebar:hover {
+  overflow-y: scroll;
 }
 
 .sidebar_links .icon {
@@ -62,4 +65,10 @@
 .side_link.active .icon {
   padding-bottom: 2px;
   border-bottom: 3px solid red;
+}
+
+@media (max-width:900px) {
+  .sidebar {
+    display: none;
+  }
 }
