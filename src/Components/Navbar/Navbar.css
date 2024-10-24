@@ -33,7 +33,7 @@ nav {
 
 .nav_left .nav_left_logo {
   display: flex;
-  gap: 1px;
+  margin-right: 10px;
 }
 
 .nav_middle .search_box {
