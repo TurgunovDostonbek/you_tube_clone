@@ -10,7 +10,7 @@ export const Video = () => {
   return (
     <div className="play_container">
       <PlayVideo videoId={videoId} />
-      <Recomended />
+      <Recomended categoryId={categoryId} />
     </div>
   );
 };

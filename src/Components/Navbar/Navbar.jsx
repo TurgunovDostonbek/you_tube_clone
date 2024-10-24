@@ -28,7 +28,7 @@ export const Navbar = ({ setSidebar }) => {
       </div>
 
       <div className="nav_right flex-div">
-        <FaVideo className="icons_video" />
+        <FaVideo className="icons_video icons" />
         <IoIosNotifications className="icons" />
         <img className="user_icon" src={Profile_User} alt="" />
       </div>
