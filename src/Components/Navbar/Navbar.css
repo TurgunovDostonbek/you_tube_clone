@@ -29,11 +29,12 @@ nav {
   font-size: 50px;
   color: red;
   cursor: pointer;
+  margin-right: 5px;
 }
 
 .nav_left .nav_left_logo {
   display: flex;
-  margin-right: 10px;
+  gap: 1px;
 }
 
 .nav_middle .search_box {
