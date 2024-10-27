@@ -95,4 +95,11 @@ nav {
   .nav_middle .search_box {
     display: none;
   }
+
+  .nav_left .logo {
+    font-size: 50px;
+    color: red;
+    cursor: pointer;
+    margin-right: -15px;
+  }
 }
