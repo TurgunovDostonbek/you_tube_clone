@@ -90,3 +90,9 @@ nav {
     width: 100px;
   }
 }
+
+@media (max-width: 410px) {
+  .nav_middle .search_box {
+    display: none;
+  }
+}

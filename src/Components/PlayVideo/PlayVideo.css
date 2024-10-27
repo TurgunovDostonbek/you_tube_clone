@@ -161,3 +161,20 @@
 
   }
 }
+
+@media (max-width:410px) {
+  .publisher button {
+    background: red;
+    cursor: pointer;
+    color: #FFF;
+    padding: 4px 15px;
+    border: 0;
+    outline: 0;
+    border-radius: 4px;
+  }
+
+  .play_video iframe {
+    width: 100%;
+    height: 50vw;
+  }
+}
