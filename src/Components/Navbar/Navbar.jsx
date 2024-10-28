@@ -30,6 +30,7 @@ export const Navbar = ({ setSidebar }) => {
       <div className="nav_right flex-div">
         <FaVideo className="icons_video icons" />
         <IoIosNotifications className="icons" />
+        <CiSearch className="icons Search_media" />
         <img className="user_icon" src={Profile_User} alt="" />
       </div>
     </nav>
