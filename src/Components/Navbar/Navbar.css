@@ -56,6 +56,10 @@ nav {
   cursor: pointer;
 }
 
+.nav_right .Search_media {
+  display: none;
+}
+
 .nav_right {
   display: flex;
   gap: 10px;
@@ -101,5 +105,9 @@ nav {
     color: red;
     cursor: pointer;
     margin-right: -15px;
+  }
+
+  .nav_right .Search_media {
+    display: block;
   }
 }
