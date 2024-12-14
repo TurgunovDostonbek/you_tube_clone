@@ -19,5 +19,4 @@ export const Home = ({ sidebar }) => {
     </div>
   );
 };
-
 export default Home;
